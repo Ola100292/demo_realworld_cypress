@@ -1,0 +1,20 @@
+{
+  "name": "demo_realworld_cypress",
+  "version": "1.0.0",
+  "description": "Learning cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cypress",
+    "testing",
+    "web",
+    "e2e"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^12.13.0"
+  }
+}
