@@ -12,6 +12,7 @@ describe('Pom Implementation - Home Page test for demo.realworld', () => {
     it('Should have few elements visible on home Page', () => {
         HomePage.articleElements.allArticle().should("be.visible")
         HomePage.articleElements.btnLike().should("exist")
+        HomePage.articleElements.bannerLoc().should("contain", "A place to share your knowledge.")
         HomePage.clickOnArticle()
 
     })
