@@ -9,8 +9,10 @@ describe('Pom Implementation - Home Page test for demo.realworld', () => {
          })
 
 
-    it('Schould choose first article', () => {
-        HomePage.clickOnArticle();
+    it('Should have few elements visible on home Page', () => {
+        HomePage.articleElements.allArticle().should("be.visible")
+        HomePage.articleElements.btnLike().should("exist")
+        HomePage.clickOnArticle()
 
     })
 

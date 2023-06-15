@@ -1,7 +1,8 @@
 class HomePage {
 
     articleElements = {
-        allArticle: () => cy.get('.ng-scope ng-isolate-scope')
+        allArticle: () => cy.get('h1[ng-bind="$ctrl.article.title"]'),
+        btnLike: () => cy.get('[class="pull-xs-right ng-scope ng-isolate-scope"]')
     }
 
 
