@@ -6,11 +6,15 @@ class HomePage {
         bannerLoc: () => cy.get('[class="banner"]')
     }
 
+    gitHubBanner = {
+        forkOnGitHub: () => cy.get('a[href="https://github.com/gothinkster/angularjs-realworld-example-app"]')
+    }
 
-clickOnArticle()
-{
-    this.articleElements.allArticle().eq(0).click();
-}
+
+    clickOnArticle() {
+        this.articleElements.allArticle().eq(0).click();
+    }
+
 }
 
 module.exports = new HomePage();
