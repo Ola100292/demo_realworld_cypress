@@ -7,7 +7,8 @@ class HomePage {
     }
 
     gitHubBanner = {
-        forkOnGitHub: () => cy.get('a[href="https://github.com/gothinkster/angularjs-realworld-example-app"]')
+        forkOnGitHub: () => cy.get('a[href="https://github.com/gothinkster/angularjs-realworld-example-app"]'),
+        gitHubIcon: () => cy.get('i[class= "ion-social-github"]')
     }
 
 
