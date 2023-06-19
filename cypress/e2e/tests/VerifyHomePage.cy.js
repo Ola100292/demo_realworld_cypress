@@ -18,6 +18,7 @@ describe('Pom Implementation - Home Page test for demo.realworld', () => {
         .and('have.css', 'background-image', 'linear-gradient(rgb(72, 85, 99), rgb(41, 50, 60))' )
         HomePage.gitHubBanner.gitHubIcon().should('be.visible')
         .and('have.prop','draggable', false )
+        HomePage.articleElements.popularTagsLoc().should('have.descendants', '[ng-bind="tagName"]')
         HomePage.clickOnArticle()
 
     })
