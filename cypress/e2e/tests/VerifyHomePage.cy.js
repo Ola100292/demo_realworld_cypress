@@ -19,6 +19,10 @@ describe('Pom Implementation - Home Page test for demo.realworld', () => {
         HomePage.gitHubBanner.gitHubIcon().should('be.visible')
         .and('have.prop','draggable', false )
         HomePage.articleElements.popularTagsLoc().should('have.descendants', '[ng-bind="tagName"]')
+        HomePage.articleElements.homeBtn().should('be.visible').and('contain', 'Home')
+        HomePage.articleElements.signInBtn().should('be.visible')
+        HomePage.articleElements.signUpBtn().should('be.visible').and('have.value', 'Sign Up')
+
         HomePage.clickOnArticle()
 
     })
