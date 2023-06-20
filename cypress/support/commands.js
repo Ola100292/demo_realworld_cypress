@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', () => {
+    cy.request({
+        method: 'POST',
+        url: 'https://conduit.productionready.io/api/users/login'        ,
+        body: {
+            user: {
+               email: 'testxyz1@gmail.com' ,
+               password: '123456',
+                           }
+        }
+
+    })
+    .then((resp) => {
+        console.log(resp)
+        window.localStorage.setItem('jwt', resp.body.user.token)
+    })
+})

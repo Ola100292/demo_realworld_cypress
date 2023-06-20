@@ -5,7 +5,7 @@ import HomePage from "../../pages/HomePage";
 
 describe('Pom Implementation - Home Page test for demo.realworld', () => {
     beforeEach(function () {
-
+        
         cy.visit(Cypress.config('baseUrl'))
     })
 
