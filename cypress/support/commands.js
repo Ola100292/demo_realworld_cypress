@@ -23,21 +23,37 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-Cypress.Commands.add('login', () => {
+Cypress.Commands.add('loginWithSessionStorage', () => {
     cy.request({
         method: 'POST',
-        url: 'https://conduit.productionready.io/api/users/login'        ,
+        url: 'https://api.realworld.io/api/users/login',
         body: {
             user: {
-               email: 'testxyz1@gmail.com' ,
-               password: '123456',
-                           }
+                email: 'testxyz1@gmail.com',
+                password: '123456',
+            }
         }
-
     })
-    .then((resp) => {
-        console.log(resp)
-        window.localStorage.setItem('jwt', resp.body.user.token)
+        .its("body.user.token")
+        .should("exist")
+        .then((resp) => {
+            console.log(resp)
+            localStorage.setItem('jwt', resp)
+        });
+})
+
+
+Cypress.Commands.add('loginViaUi', (username, password) => {
+    cy.session([username, password], () => {
+        cy.visit('/login')
+        cy.get('[placeholder="Email"]').clear().type(username);
+        cy.get('[placeholder="Password"]').clear().type(password);
+        cy.get('[type="submit"]').click();
+
+    }, {
+        validate() {
+            cy.visit('/settings')
+            cy.url().should("contain", Cypress.config().baseUrl);
+        }
     })
 })

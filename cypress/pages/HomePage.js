@@ -19,6 +19,9 @@ class HomePage {
     clickOnArticle() {
         this.articleElements.allArticle().eq(0).click();
     }
+    clickOnSignInBtn() {
+        this.articleElements.signInBtn().click();
+    }
 
 }
 
