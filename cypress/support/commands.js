@@ -42,7 +42,7 @@ Cypress.Commands.add('loginWithSessionStorage', () => {
         });
 })
 
-
+//Logging via UI using cy.session and validate user page
 Cypress.Commands.add('loginViaUi', (username, password) => {
     cy.session([username, password], () => {
         cy.visit('/login')

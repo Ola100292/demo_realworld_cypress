@@ -17,15 +17,20 @@ describe('Pom Implementation - Login Page', () => {
   it('Should have few elements visible on User Page', () => {
 
 
-    UserPage.elementsForAssertion.nicnameCheck().should('be.visible')
+    UserPage.elementsForAssertion.loginCheck().should('be.visible');
+    UserPage.elementsForAssertion.yourFeedFunction().should('contain', 'Your Feed');
+    UserPage.yourFeedFunctionClick();
+    UserPage.elementsForAssertion.activeFeed().should('exist')
+
+
 
   })
 
 
-  it('Should have few elements visible on User Page2', () => {
-    cy.visit('')
+  it.skip('Should have few elements visible on User Page2', () => {
 
-    UserPage.elementsForAssertion.nicnameCheck().should('be.visible')
+
+    UserPage.elementsForAssertion.loginCheck().should('be.visible')
 
   })
 
