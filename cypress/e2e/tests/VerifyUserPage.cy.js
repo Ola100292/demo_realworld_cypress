@@ -1,17 +1,22 @@
 
-import UserPage from "../../pages/UserPage";
+import UserPage, { openSettingsPage } from "../../pages/UserPage";
 /// <reference types="cypress"/>
 
 
 describe('Pom Implementation - Login Page', () => {
   beforeEach(function () {
+ cy.visit('')
+ Cypress.session.clearAllSavedSessions()
+    cy.log('create user')
+    cy.loginWithSessionStorage();
 
-    cy.loginViaUi('testxyz1@gmail.com', '123456')
-    cy.visit('')
+   
+    
   })
 
   afterEach(function () {
     Cypress.session.clearAllSavedSessions()
+   
   })
 
   it('Should have few elements visible on User Page', () => {
@@ -22,15 +27,19 @@ describe('Pom Implementation - Login Page', () => {
     UserPage.yourFeedFunctionClick();
     UserPage.elementsForAssertion.activeFeed().should('exist')
 
-
-
   })
 
 
-  it.skip('Should have few elements visible on User Page2', () => {
+  it('Should click on settings and check elements', () => {
 
-
-    UserPage.elementsForAssertion.loginCheck().should('be.visible')
+    
+    UserPage.openSettingsPage();   
+     cy.wait(10000)
+     cy.getAllLocalStorage(true)
+    
+    UserPage.settingsElements.profilePicture().should('be.visible') 
+    .and('have.prop', 'readOnly', false)
+    .and('have.prop', 'required', false)
 
   })
 
