@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-//Login by API 
+//Login by API with correct user
 Cypress.Commands.add('loginWithApi', () => {
     cy.request({
         method: 'POST',
@@ -34,38 +34,31 @@ Cypress.Commands.add('loginWithApi', () => {
                 "email": 'testxyz1@gmail.com',
                 "password": '123456',
             }
-        }              
+        }
     })
         .its("body.user.token")
         .should("exist")
-        .then((resp) => {            
+        .then((resp) => {
             console.log(resp)
             localStorage.setItem('jwtToken', resp)
         });
 
-        cy.visit("/settings");
+    cy.visit("/settings");
 })
 
+// Command for logging user with invalid acc
 Cypress.Commands.add('interceptTest', () => {
     cy.intercept({
         method: 'POST',
-        url: 'https://api.realworld.io/api/users/login'                
+        url: 'https://api.realworld.io/api/users/login'
     }).as('loggingRequest')
 })
 
 
-//Logging via UI using cy.session and validate user page
+//Logging via UI using wrong username or pass
 Cypress.Commands.add('loginViaUi', (username, password) => {
-    cy.session([username, password], () => {
-        cy.visit('/login')
-        cy.get('[placeholder="Email"]').clear().type(username);
-        cy.get('[placeholder="Password"]').clear().type(password);
-        cy.get('[type="submit"]').click();
-
-    }, {
-        validate() {
-            cy.visit('/settings')
-            cy.url().should("contain", Cypress.config().baseUrl);
-        }
-    })
+    cy.visit('/login')
+    cy.get('[placeholder="Email"]').clear().type(username);
+    cy.get('[placeholder="Password"]').clear().type(password);
+    cy.get('[type="submit"]').click();
 })

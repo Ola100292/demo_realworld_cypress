@@ -18,6 +18,11 @@ class UserPage {
             logOutBtn: () => cy.get('[ng-click="$ctrl.logout()"]')
         }
 
+    invalidLogging = {
+
+        errorText: () => cy.get('[class="error-messages"]')
+    }
+
     yourFeedFunctionClick() {
         this.elementsForAssertion.yourFeedFunction().eq(0).click()
     }
