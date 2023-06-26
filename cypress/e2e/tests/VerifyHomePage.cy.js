@@ -7,7 +7,7 @@ describe('Pom Implementation - Home Page test for demo.realworld', () => {
     beforeEach(function () {
 
         cy.visit(Cypress.config('baseUrl'))
-        cy.log('Delete logged user')
+       
         
     })
     afterEach(function () {

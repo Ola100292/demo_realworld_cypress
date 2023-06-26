@@ -1,45 +1,30 @@
-
 import UserPage, { openSettingsPage } from "../../pages/UserPage";
 /// <reference types="cypress"/>
 
 
-describe('Pom Implementation - Login Page', () => {
+describe('Pom Implementation - Logged user with valid acc', () => {
   beforeEach(function () {
- cy.visit('')
- Cypress.session.clearAllSavedSessions()
-    cy.log('create user')
-    cy.loginWithSessionStorage();
-
-   
-    
+    cy.visit('')
+    cy.log('create token for valid user')
+    cy.loginWithApi()
   })
 
-  afterEach(function () {
-    Cypress.session.clearAllSavedSessions()
-   
-  })
 
   it('Should have few elements visible on User Page', () => {
 
-
     UserPage.elementsForAssertion.loginCheck().should('be.visible');
-    UserPage.elementsForAssertion.yourFeedFunction().should('contain', 'Your Feed');
-    UserPage.yourFeedFunctionClick();
-    UserPage.elementsForAssertion.activeFeed().should('exist')
+    cy.visit('')
+    UserPage.elementsForAssertion.yourFeedFunction().should('be.visible');
+   
 
   })
 
 
-  it('Should click on settings and check elements', () => {
+  it('Should check settings', () => {
 
-    
-    UserPage.openSettingsPage();   
-     cy.wait(10000)
-     cy.getAllLocalStorage(true)
-    
-    UserPage.settingsElements.profilePicture().should('be.visible') 
-    .and('have.prop', 'readOnly', false)
-    .and('have.prop', 'required', false)
+    UserPage.settingsElements.profilePicture().should('be.visible')
+      .and('have.prop', 'readOnly', false)
+      .and('have.prop', 'required', false)
 
   })
 

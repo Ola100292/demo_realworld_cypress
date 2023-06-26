@@ -23,24 +23,36 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('loginWithSessionStorage', () => {
+
+//Login by API 
+Cypress.Commands.add('loginWithApi', () => {
     cy.request({
         method: 'POST',
         url: 'https://api.realworld.io/api/users/login',
         body: {
-            user: {
-                email: 'testxyz1@gmail.com',
-                password: '123456',
+            "user": {
+                "email": 'testxyz1@gmail.com',
+                "password": '123456',
             }
-        }
+        }              
     })
         .its("body.user.token")
         .should("exist")
-        .then((resp) => {
+        .then((resp) => {            
             console.log(resp)
-            localStorage.setItem('jwt', resp)
+            localStorage.setItem('jwtToken', resp)
         });
+
+        cy.visit("/settings");
 })
+
+Cypress.Commands.add('interceptTest', () => {
+    cy.intercept({
+        method: 'POST',
+        url: 'https://api.realworld.io/api/users/login'                
+    }).as('loggingRequest')
+})
+
 
 //Logging via UI using cy.session and validate user page
 Cypress.Commands.add('loginViaUi', (username, password) => {

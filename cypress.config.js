@@ -5,7 +5,7 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://demo.realworld.io/#/',
     hideXHRInCommandLog: false,
-    testIsolation: false,
+    testIsolation: true,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
