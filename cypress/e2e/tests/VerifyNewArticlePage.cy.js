@@ -11,9 +11,10 @@ describe('Pom Implementation - Create new article', () => {
 it('Should check new article section', () => {
 
     NewArticlePage.editorBtnClick()
-    NewArticlePage.editorElements.articleTitle().should('be.visible')
-    NewArticlePage.editorElements.shortInfo().should('be.visible')
-    NewArticlePage.editorElements.articleText().should('be.visible')
+    NewArticlePage.editorElements.articleTitle().should('be.visible').and('not.be.null')
+    NewArticlePage.editorElements.shortInfo().should('be.visible').and('match', '[type="text"]')
+    NewArticlePage.editorElements.articleText().should('be.visible').and('have.prop', 'readOnly', false)
+    .and('have.prop', 'required', false)
     NewArticlePage.editorElements.tags().should('be.visible')
 
 })
