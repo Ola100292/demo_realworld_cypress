@@ -21,8 +21,18 @@ describe('Pom Implementation - Create new article', () => {
 
   })
 
-  it('Should check validation for creating article', () => {
-    NewArticlePage.editorBtnClick()
+  it('Should check validation for creating article. Untitle step', () => {
+    NewArticlePage.editorBtnClick();
+    NewArticlePage.shortInfoText();
+    NewArticlePage.articleTextType();
+    NewArticlePage.publishArticleBtnClick();
+    cy.intercept({
+      method: 'POST',
+      url: 'https://api.realworld.io/api/articles'
+  }).as('addArticleRequestFail')
+    NewArticlePage.errorList.noTitleError().should('contain', "title can't be blank")
+    cy.wait('@addArticleRequestFail').its('response.statusCode').should('to.be', 422)
+
     
   })
 
