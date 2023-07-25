@@ -10,11 +10,16 @@ class NewArticlePage {
     }
 
     errorList = {
-        noTitleError: () => cy.get('[class="ng-binding ng-scope"]')
+        error: () => cy.get('[class="ng-binding ng-scope"]')
+        
 
     }
     editorBtnClick()  {
         this.editorElements.editorBtn().click();
+    }
+    titleText()
+    {
+        this.editorElements.articleTitle().type('Article XYZ')
     }
     shortInfoText() {
         this.editorElements.shortInfo().type('XYZ')
